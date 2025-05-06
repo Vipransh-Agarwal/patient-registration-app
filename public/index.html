@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Patient Registration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Patient Registration App</title>
 </head>
 <body>
   <h1>Register Patient</h1>
@@ -14,6 +14,15 @@
     <input type="text" id="contact" placeholder="Contact" required />
     <button type="submit">Register</button>
   </form>
-  <script type="module" src="../src/app.js"></script>
+
+  <hr/>
+
+  <h2>Query Patients</h2>
+  <textarea id="sql-query" rows="4" cols="50" placeholder="Enter SQL query here"></textarea>
+  <br />
+  <button id="execute-query">Execute</button>
+  <pre id="query-result"></pre>
+
+  <script type="module" src="/src/app.js"></script>
 </body>
 </html>
