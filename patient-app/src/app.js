@@ -1,48 +1,43 @@
-import db from './db.js';
+// app.js
+import { initDb } from './db.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Handle form submission to add a new patient
-  document.getElementById('registration-form').addEventListener('submit', async (e) => {
+initDb().then((db) => {
+  const form = document.getElementById('registration-form');
+  const queryBtn = document.getElementById('execute-query');
+  const queryResult = document.getElementById('query-result');
+  const sqlQueryInput = document.getElementById('sql-query');
+
+  // Handle form submission for registering a new patient
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name = document.getElementById('name').value.trim();
-    const age = parseInt(document.getElementById('age').value, 10);
-    const gender = document.getElementById('gender').value.trim();
-    const contact = document.getElementById('contact').value.trim();
+    const name = document.getElementById('name').value;
+    const age = document.getElementById('age').value;
+    const gender = document.getElementById('gender').value;
+    const contact = document.getElementById('contact').value;
 
-    if (!name || isNaN(age) || !gender || !contact) {
-      alert("Please fill all fields correctly.");
-      return;
-    }
+    await db.exec(`
+      INSERT INTO patients (name, age, gender, contact) 
+      VALUES ('${name}', ${age}, '${gender}', '${contact}');
+    `);
 
-    try {
-      await db.run(
-        'INSERT INTO patients (name, age, gender, contact) VALUES (?, ?, ?, ?)',
-        [name, age, gender, contact]
-      );
-      alert('Patient registered successfully!');
-      e.target.reset();
-    } catch (err) {
-      console.error('Error inserting patient:', err);
-      alert('Error registering patient.');
-    }
+    alert('Patient Registered Successfully!');
+    form.reset();
   });
 
-  // Handle SQL query execution
-  document.getElementById('execute-query').addEventListener('click', async () => {
-    const query = document.getElementById('sql-query').value.trim();
-    const resultContainer = document.getElementById('query-result');
+  // Query execution when clicking the "Execute" button
+  queryBtn.addEventListener('click', async () => {
+    const query = sqlQueryInput.value.trim();
 
-    if (!query) {
-      resultContainer.textContent = 'Please enter a SQL query.';
-      return;
-    }
-
-    try {
-      const result = await db.query(query);
-      resultContainer.textContent = JSON.stringify(result.rows, null, 2);
-    } catch (error) {
-      resultContainer.textContent = `Error: ${error.message}`;
+    if (query) {
+      try {
+        const result = await db.query(query);
+        queryResult.textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        queryResult.textContent = `Error: ${error.message}`;
+      }
+    } else {
+      queryResult.textContent = 'Please enter a query.';
     }
   });
 });

@@ -1,17 +1,23 @@
+// vite.config.js
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  // Define the root of the application
   root: './',
-
-  // Configure the output directory for the production build
   build: {
-    outDir: 'dist',  // This is the folder where the production build will be placed
+    outDir: 'dist',
+    target: 'esnext',
+    commonjsOptions: {
+      include: [/node_modules/],
+    },
   },
-
-  // Optional: Configure server settings
   server: {
-    open: true, // Automatically open the browser when running `npm run dev`
-    port: 5173, // Default Vite port
-  }
+    open: true,
+    port: 5173,
+  },
+  optimizeDeps: {
+    exclude: ['@electric-sql/pglite'],
+  },
+  worker: {
+    format: 'es',
+  },
 });
