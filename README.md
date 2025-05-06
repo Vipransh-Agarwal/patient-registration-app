@@ -29,7 +29,15 @@ Follow these steps to run the app on your local machine.
 
 ### Prerequisites
 
-- Node.js and npm installed
+- **Node.js**: v18.x or later  
+- **npm**: v9.x or later
+
+Make sure you have these installed before running the project. You can verify your versions using:
+
+```bash
+node -v
+npm -v
+```
 
 ### Installation
 
