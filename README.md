@@ -42,7 +42,7 @@ npm -v
 ### Installation
 
 ```bash
-git clone https://github.com/yourusername/patient-registration-app.git
+git clone https://github.com/Vipransh-Agarwal/patient-registration-app.git
 cd patient-registration-app/patient-app
 npm install
 ```
