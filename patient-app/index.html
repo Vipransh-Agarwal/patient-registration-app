@@ -4,6 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Patient Registration App</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    input, textarea {
+      margin: 5px;
+      padding: 8px;
+    }
+    button {
+      margin: 10px 0;
+      padding: 8px 16px;
+    }
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    .error {
+      color: red;
+    }
+  </style>
 </head>
 <body>
   <h1>Register Patient</h1>
@@ -21,7 +50,8 @@
   <textarea id="sql-query" rows="4" cols="50" placeholder="Enter SQL query here"></textarea>
   <br />
   <button id="execute-query">Execute</button>
-  <pre id="query-result"></pre>
+
+  <div id="query-result"></div>
 
   <script type="module" src="/src/app.js"></script>
 </body>
