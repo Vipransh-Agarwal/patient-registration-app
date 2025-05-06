@@ -7,7 +7,7 @@ A lightweight web application designed to register patient details and execute S
 
 ## 🌐 Live Demo
 
-Access the application online: **[https://your-netlify-site.netlify.app](https://your-netlify-site.netlify.app)**  
+Access the application online: **[http://assignment-patient-app.netlify.app/](http://assignment-patient-app.netlify.app/)**  
 *(Replace with your actual Netlify URL)*
 
 ### Example Usage
